@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: "Play for demoing Hello World Module"
+  hosts: localhost
   gather_facts: false
 
   tasks:
@@ -9,5 +10,5 @@
       register: hello_result
 
     - name: "Print greeting"
-      debug:
+      ansible.builtin.debug:
         var: hello_result.result
