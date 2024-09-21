@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: "Hello from Powershell Demo"
+      hello.world.hello_pwsh:
+        greet_name: "Murphy"
+      register: hello_result
+
+    - name: "Print greeting"
+      debug:
+        var: hello_result.result

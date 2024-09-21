@@ -34,12 +34,12 @@ EXAMPLES = """
 
 RETURN = """# """
 
-from ansible.module_utils._text import to_native
-from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_native  # type: ignore
+from ansible.module_utils.basic import AnsibleModule  # type: ignore
 
 
 def main():
-    GREET_STRING_SPEC = "Hello World {greet_name}!"
+    GREET_STRING_SPEC = "Hello World, {greet_name}!"
     argument_spec = dict(
         greet_name=dict(type="str", required=True),
     )
@@ -56,8 +56,9 @@ def main():
         module.exit_json(changed=True, result=greeting)
     except Exception as err:
         module.fail_json(
-            msg="Failed to accept End User License Agreement. Error[%s]."
-            % to_native(err)
+            msg="Failed to greet with [{greeting}]. Error: [{error}].".format(
+                greeting=greeting, error=to_native(err)
+            )
         )
 
 

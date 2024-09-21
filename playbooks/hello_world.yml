@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: "Hello World Demo"
+      hello.world.hello_world:
+        greet_name: "Cooper"
+      register: hello_result
+
+    - name: "Print greeting"
+      debug:
+        var: hello_result.result
